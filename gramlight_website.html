@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gramlight - LED Manufacturing & Women Empowerment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ffffff 0%, #4ade80 100%);
+            color: #1f2937;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #065f46;
+            text-shadow: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #1f2937;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            background: rgba(74, 222, 128, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: #1f2937;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(74, 222, 128, 0.1)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:1" /><stop offset="100%" style="stop-color:%234ade80;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23grad1)"/><circle cx="200" cy="150" r="20" fill="rgba(6,95,70,0.1)"/><circle cx="400" cy="100" r="15" fill="rgba(6,95,70,0.1)"/><circle cx="600" cy="200" r="25" fill="rgba(6,95,70,0.1)"/><circle cx="800" cy="120" r="18" fill="rgba(6,95,70,0.1)"/><circle cx="1000" cy="180" r="22" fill="rgba(6,95,70,0.1)"/></svg>');
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #1f2937;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #065f46;
+            text-shadow: none;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #374151;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #059669;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            background: linear-gradient(45deg, #10b981, #4ade80);
+            height: 300px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #10b981, #4ade80);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Women Empowerment Section */
+        .empowerment {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #10b981 0%, #4ade80 100%);
+            color: white;
+        }
+
+        .empowerment-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .empowerment h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .empowerment p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #4ade80;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #4ade80;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(16, 185, 129, 0.95);
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-text h2,
+            .services h2,
+            .empowerment h2 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Gramlight</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#empowerment">Empowerment</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu" id="mobileMenu">☰</button>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Gramlight</h1>
+            <p>Illuminating Lives Through LED Innovation & Women Empowerment</p>
+            <a href="#services" class="cta-button">Discover Our Services</a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2>Message from Vivek Singh</h2>
+                    <p>Welcome to Gramlight, where we believe in illuminating not just spaces, but lives. Our journey began with a simple vision: to create high-quality LED lighting solutions while empowering women in rural communities. Today, I'm proud to say that we've not only established ourselves as a trusted name in LED manufacturing but have also transformed the lives of over 13,000 women, helping them embark on their entrepreneurial journeys. At Gramlight, we don't just manufacture lights; we kindle the spark of independence and self-reliance in every woman we train.</p>
+                </div>
+                <div class="about-image fade-in">
+                    <div>
+                        <h3>LED Manufacturing Excellence</h3>
+                        <p>Quality • Innovation • Sustainability</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="fade-in">Our Manufacturing Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏠</div>
+                    <h3>Home Decor Lights</h3>
+                    <p>Beautiful and energy-efficient LED lights designed to enhance the ambiance of your home. Our home decor collection includes pendant lights, chandeliers, wall sconces, and decorative fixtures that combine style with sustainability.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏢</div>
+                    <h3>Commercial LED Lights</h3>
+                    <p>Professional-grade LED lighting solutions for offices, retail spaces, warehouses, and industrial facilities. Our commercial lights offer superior brightness, longevity, and energy efficiency to reduce operational costs.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">☀️</div>
+                    <h3>Solar LED Lights</h3>
+                    <p>Eco-friendly solar-powered LED lighting systems perfect for outdoor spaces, streets, and remote areas. Our solar lights harness renewable energy to provide reliable illumination while reducing carbon footprint.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="empowerment" id="empowerment">
+        <div class="container">
+            <div class="empowerment-content fade-in">
+                <h2>Women Empowerment Initiative</h2>
+                <p>At Gramlight, we believe that true progress comes from empowering communities. Our women empowerment program is at the heart of our mission. We provide comprehensive training to women in rural areas, teaching them LED manufacturing skills, business management, and entrepreneurship. Through our program, these women gain financial independence and become job creators in their communities.</p>
+                <p>Our training modules cover technical skills, quality control, marketing, and financial management, ensuring that every graduate is well-equipped to start and manage their own LED manufacturing business successfully.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="womenTrained">13,000+</span>
+                        <span class="stat-label">Women Trained</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="businessesStarted">8,500+</span>
+                        <span class="stat-label">Businesses Started</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="livesImpacted">45,000+</span>
+                        <span class="stat-label">Lives Impacted</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Gramlight</h3>
+                    <p>Leading LED manufacturer committed to quality lighting solutions and women empowerment. Illuminating the future, one light at a time.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <p><a href="#services">Home Decor Lights</a></p>
+                    <p><a href="#services">Commercial LED Lights</a></p>
+                    <p><a href="#services">Solar LED Systems</a></p>
+                    <p><a href="#empowerment">Women Training Programs</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>Email: vsenergytechnology@gmail.com</p>
+                    <p>Phone: +91-9711350633</p>
+                    <p>Address: Ecotech 2, Greater Noida, Uttar Pradesh</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Gramlight. All rights reserved. | Designed with ❤️ for sustainable lighting solutions</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            var navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        function smoothScroll(target) {
+            var element = document.querySelector(target);
+            if (element) {
+                var headerHeight = 80;
+                var targetPosition = element.offsetTop - headerHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Fade in animation on scroll
+        function checkFadeIn() {
+            var fadeElements = document.querySelectorAll('.fade-in');
+            var windowHeight = window.innerHeight;
+            
+            fadeElements.forEach(function(element) {
+                var elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Counter animation for statistics
+        function animateCounter(elementId, targetNumber, duration) {
+            var element = document.getElementById(elementId);
+            var startNumber = 0;
+            var increment = targetNumber / (duration / 10);
+            
+            function updateCounter() {
+                startNumber += increment;
+                if (startNumber < targetNumber) {
+                    element.textContent = Math.floor(startNumber).toLocaleString() + '+';
+                    setTimeout(updateCounter, 10);
+                } else {
+                    element.textContent = targetNumber.toLocaleString() + '+';
+                }
+            }
+            
+            updateCounter();
+        }
+
+        // Initialize animations when empowerment section is visible
+        function initCounters() {
+            var empowermentSection = document.getElementById('empowerment');
+            var sectionTop = empowermentSection.getBoundingClientRect().top;
+            var windowHeight = window.innerHeight;
+            
+            if (sectionTop < windowHeight && !empowermentSection.classList.contains('animated')) {
+                empowermentSection.classList.add('animated');
+                animateCounter('womenTrained', 13000, 2000);
+                animateCounter('businessesStarted', 8500, 2000);
+                animateCounter('livesImpacted', 45000, 2000);
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu
+            document.getElementById('mobileMenu').addEventListener('click', toggleMobileMenu);
+            
+            // Smooth scrolling for navigation
+            var navLinks = document.querySelectorAll('.nav-links a, .cta-button');
+            navLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var targetId = this.getAttribute('href');
+                    smoothScroll(targetId);
+                    
+                    // Close mobile menu after clicking
+                    var navLinksContainer = document.getElementById('navLinks');
+                    navLinksContainer.classList.remove('active');
+                });
+            });
+            
+            // Initial fade in check
+            checkFadeIn();
+            initCounters();
+        });
+
+        // Scroll events
+        window.addEventListener('scroll', function() {
+            checkFadeIn();
+            initCounters();
+            
+            // Header background change on scroll
+            var header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #ffffff 0%, #4ade80 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Resize event for responsive behavior
+        window.addEventListener('resize', function() {
+            var navLinks = document.getElementById('navLinks');
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
